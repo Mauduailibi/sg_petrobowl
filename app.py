@@ -58,7 +58,7 @@ st.markdown('<hr>', unsafe_allow_html=True)
 
 st.caption(st.session_state.current_week)
 st.write(st.session_state.current_question)
-st.write('Resposta: {}'.format(st.session_state.current_answer))
+st.success(st.session_state.current_answer)
 
 col_btn_last, col_btn_answer, col_btn_next = st.columns([1, 3, 1])
 
