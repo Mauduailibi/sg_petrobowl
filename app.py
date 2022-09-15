@@ -7,6 +7,14 @@ from models.question import Question
 
 # System functions
 
+st.set_page_config(
+    page_title="PetroTeam CESFI",
+    page_icon="🛢️",
+    menu_items={
+        'About': "Sistema de gestão de perguntas para o time da PetroBowl do CESFI/UDESC. Feito por Mauricio Duailibi Neto."
+    }
+)
+
 # Paths
 app_path = os.path.dirname('./')
 tables_path = os.path.join(app_path, 'assets/xlsx/')
