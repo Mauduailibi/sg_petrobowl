@@ -21,7 +21,7 @@ for path in os.listdir(tables_path):
 
 tables = list()
 for i in range(tables_counter):
-    tables.append(pd.read_excel(os.path.join(tables_path, f'Semana {i+1}.xlsx')))
+    tables.append(pd.read_excel(os.path.join(tables_path, f'W{i+1}.xlsx')))
 
 # Setting questions
 
