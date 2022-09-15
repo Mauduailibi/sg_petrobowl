@@ -32,6 +32,19 @@ for idx, table in enumerate(tables):
     for i in range(len(table)):
         questions.append(Question(table['Perguntas'][i], table['Respostas'][i], f'Week {week}'))
 
+if 'current_question' not in st.session_state:
+    st.session_state['current_question'] = ''
+    st.session_state['current_answer'] = ''
+    st.session_state['current_week'] = ''
+
+def randomQuestion():
+    random = np.random.randint(0, len(questions))
+    st.session_state['current_question'] = questions[random].getQuestion()
+    st.session_state['current_answer'] = questions[random].getAnswer()
+    st.session_state['current_week'] = questions[random].getWeek()
+
+randomQuestion()
+
 # View
 
 with open(style) as f:
@@ -43,26 +56,25 @@ st.caption('Número de perguntas do banco de dados: {}'.format(len(questions)))
 
 st.markdown('<hr>', unsafe_allow_html=True)
 
-random = np.random.randint(0, len(questions))
-current_question = questions[random]
-
-st.caption(current_question.getWeek())
-st.write(current_question.getQuestion())
+st.caption(st.session_state.current_week)
+st.write(st.session_state.current_question)
+st.write('Resposta: {}'.format(st.session_state.current_answer))
 
 col_btn_last, col_btn_answer, col_btn_next = st.columns([1, 3, 1])
 
-with col_btn_last:
-    btn_last = st.button('Anterior')
+# with col_btn_last:
+#     btn_last = st.button('Anterior')
 
-with col_btn_answer:
-    btn_answer = st.button('Mostrar resposta')
+# with col_btn_answer:
+#     btn_answer = st.button('Mostrar resposta')
 
 with col_btn_next:
     btn_next = st.button('Próxima')
 
-if btn_answer:
-    st.write('Resposta: {}'.format(current_question.getAnswer()))
+# if btn_answer:
+#     btn_next = False
+#     st.write('Resposta: {}'.format(st.session_state.current_answer))
 
 if btn_next:
-    random = np.random.randint(0, len(questions))
-    current_question = questions[random]    
+    btn_answer = False
+    randomQuestion()
