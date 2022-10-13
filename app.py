@@ -64,7 +64,10 @@ st.caption('Número de perguntas do banco de dados: {}'.format(len(questions)))
 
 st.markdown('<hr>', unsafe_allow_html=True)
 
-st.caption(st.session_state.current_week)
+if(st.session_state.current_week == 'Week 14'):
+    st.caption('UFF')
+else :
+    st.caption(st.session_state.current_week)
 st.write(st.session_state.current_question)
 st.success(st.session_state.current_answer)
 
